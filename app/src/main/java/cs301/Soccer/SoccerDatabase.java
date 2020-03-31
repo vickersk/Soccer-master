@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class SoccerDatabase implements SoccerDB {
 
-    private HashMap<String, SoccerPlayer> database;
+    private HashMap<String, SoccerPlayer> database = new HashMap<>();
 
     /**
      * add a player
