@@ -10,11 +10,13 @@ import java.util.*;
 /**
  * Soccer player database -- presently, all dummied up
  *
- * @author *** put your name here ***
- * @version *** put date of completion here ***
+ * @author *** Kai Vickers ***
+ * @version *** March 2020 ***
  *
  */
 public class SoccerDatabase implements SoccerDB {
+
+    private HashMap<String, SoccerPlayer> database;
 
     /**
      * add a player
@@ -24,7 +26,22 @@ public class SoccerDatabase implements SoccerDB {
     @Override
     public boolean addPlayer(String firstName, String lastName,
                              int uniformNumber, String teamName) {
-        return false;
+
+        String key = keyCreator(firstName, lastName);
+        SoccerPlayer player;
+
+        if (database.containsKey(key)) {
+            return false;
+        } else {
+            player = new SoccerPlayer(firstName, lastName, uniformNumber, teamName);
+            database.put(key, player);
+            return true;
+        }
+    }
+
+    private String keyCreator(String firstName, String lastName) {
+        String key = firstName + "##" + lastName;
+        return key;
     }
 
     /**
