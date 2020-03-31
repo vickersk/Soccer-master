@@ -27,7 +27,7 @@ public class SoccerDatabase implements SoccerDB {
     public boolean addPlayer(String firstName, String lastName,
                              int uniformNumber, String teamName) {
 
-        String key = keyCreator(firstName, lastName);
+        String key = createKey(firstName, lastName);
         SoccerPlayer player;
 
         if (database.containsKey(key)) {
@@ -47,7 +47,7 @@ public class SoccerDatabase implements SoccerDB {
      * @param lastName the last name of the player
      * @return a key combining the first and last names
      */
-    private String keyCreator(String firstName, String lastName) {
+    private String createKey(String firstName, String lastName) {
         String key = firstName + "##" + lastName;
         return key;
     }
@@ -60,7 +60,7 @@ public class SoccerDatabase implements SoccerDB {
     @Override
     public boolean removePlayer(String firstName, String lastName) {
 
-        String key = keyCreator(firstName, lastName);
+        String key = createKey(firstName, lastName);
         if (database.containsKey(key)) {
             database.remove(key);
             return true;
@@ -77,7 +77,7 @@ public class SoccerDatabase implements SoccerDB {
     @Override
     public SoccerPlayer getPlayer(String firstName, String lastName) {
 
-        String key = keyCreator(firstName, lastName);
+        String key = createKey(firstName, lastName);
         return database.get(key);
 
         /*
@@ -96,7 +96,15 @@ public class SoccerDatabase implements SoccerDB {
      */
     @Override
     public boolean bumpGoals(String firstName, String lastName) {
-        return false;
+
+        String key = createKey(firstName, lastName);
+
+        if (database.containsKey(key)){
+            database.get(key).bumpGoals();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -106,7 +114,14 @@ public class SoccerDatabase implements SoccerDB {
      */
     @Override
     public boolean bumpAssists(String firstName, String lastName) {
-        return false;
+        String key = createKey(firstName, lastName);
+
+        if (database.containsKey(key)){
+            database.get(key).bumpAssists();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -116,7 +131,14 @@ public class SoccerDatabase implements SoccerDB {
      */
     @Override
     public boolean bumpShots(String firstName, String lastName) {
-        return false;
+        String key = createKey(firstName, lastName);
+
+        if (database.containsKey(key)){
+            database.get(key).bumpShots();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -126,7 +148,14 @@ public class SoccerDatabase implements SoccerDB {
      */
     @Override
     public boolean bumpSaves(String firstName, String lastName) {
-        return false;
+        String key = createKey(firstName, lastName);
+
+        if (database.containsKey(key)){
+            database.get(key).bumpSaves();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -136,7 +165,14 @@ public class SoccerDatabase implements SoccerDB {
      */
     @Override
     public boolean bumpFouls(String firstName, String lastName) {
-        return false;
+        String key = createKey(firstName, lastName);
+
+        if (database.containsKey(key)){
+            database.get(key).bumpFouls();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -146,7 +182,14 @@ public class SoccerDatabase implements SoccerDB {
      */
     @Override
     public boolean bumpYellowCards(String firstName, String lastName) {
-        return false;
+        String key = createKey(firstName, lastName);
+
+        if (database.containsKey(key)){
+            database.get(key).bumpYellowCards();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -156,7 +199,14 @@ public class SoccerDatabase implements SoccerDB {
      */
     @Override
     public boolean bumpRedCards(String firstName, String lastName) {
-        return false;
+        String key = createKey(firstName, lastName);
+
+        if (database.containsKey(key)){
+            database.get(key).bumpRedCards();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
