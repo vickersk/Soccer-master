@@ -39,6 +39,14 @@ public class SoccerDatabase implements SoccerDB {
         }
     }
 
+    /**
+     * Returns a key for the player's data based on their name
+     * to be used in the database.
+     *
+     * @param firstName the first name of the player
+     * @param lastName the last name of the player
+     * @return a key combining the first and last names
+     */
     private String keyCreator(String firstName, String lastName) {
         String key = firstName + "##" + lastName;
         return key;
@@ -61,7 +69,17 @@ public class SoccerDatabase implements SoccerDB {
      */
     @Override
     public SoccerPlayer getPlayer(String firstName, String lastName) {
-        return null;
+
+        String key = keyCreator(firstName, lastName);
+        return database.get(key);
+
+        /*
+        if(database.containsKey(key)) {
+            return database.get(key);
+        } else {
+            return null;
+        }
+        */
     }
 
     /**
