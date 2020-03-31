@@ -285,7 +285,28 @@ public class SoccerDatabase implements SoccerDB {
     // write data to file
     @Override
     public boolean writeData(File file) {
-        return false;
+        try {
+            PrintWriter writer = new PrintWriter(file);
+            for (SoccerPlayer player : database.values()) {
+                writer.println(logString("First Name: " + player.getFirstName()));
+                writer.println(logString("Last Name: " + player.getLastName()));
+                writer.println(logString("Uniform Number: " + player.getUniform()));
+                writer.println(logString("Goals Scored: " + player.getGoals()));
+                writer.println(logString("Assists: " + player.getAssists()));
+                writer.println(logString("Shots: " + player.getShots()));
+                writer.println(logString("Fouls: " + player.getFouls()));
+                writer.println(logString("Saves: " + player.getSaves()));
+                writer.println(logString("Yellow Cards: " + player.getYellowCards()));
+                writer.println(logString("Red Cards: " + player.getRedCards()));
+                writer.println(logString("Team Name: " + player.getTeamName()));
+                writer.println();
+            }
+            writer.close();
+            return true;
+
+        } catch (Exception FileNotFoundException) {
+            return false;
+        }
     }
 
     /**
